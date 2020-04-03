@@ -4,5 +4,13 @@
 
 # hola -> ho
 # verde -> ver
+import math
+
 def mitad(palabra):
-    pass
+    mitad = math.ceil(len(palabra)/2)
+    mitadpalabra=""
+    for i in range(mitad):
+        mitadpalabra=mitadpalabra+palabra[i]
+    return mitadpalabra
+
+print(mitad("hola"))

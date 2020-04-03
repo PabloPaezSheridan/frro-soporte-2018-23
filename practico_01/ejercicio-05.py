@@ -4,4 +4,7 @@
 
 # Resolver utilizando listas y el operador in.
 def es_vocal(letra):
-    pass
+    lista=[a,e,i,o,u]
+    if(letra in lista):
+        print ("Es vocal")
+
