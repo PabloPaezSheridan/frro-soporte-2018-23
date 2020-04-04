@@ -12,9 +12,23 @@ class Persona:
         self.nacimiento = nacimiento
 
     def edad(self):     
-        pass
+        hoy = datetime.date.today()
+        if hoy < self.nacimiento:
+            return 0
+        else:
+            ano = self.nacimiento.year
+            mes = self.nacimiento.month
+            dia = self.nacimiento.day
+
+            fecha = self.nacimiento
+            edad = 0
+            while fecha < hoy:
+                edad += 1
+                fecha = datetime.date(ano+edad, mes, dia)
+
+            return edad-1
 
 
-#fdn = datetime.date(1997, 5, 8)
-#p1 = Persona(fdn)
-#print(p1.edad())
+fdn = datetime.date(1997, 6, 8)
+p1 = Persona(fdn)
+print(p1.edad())
