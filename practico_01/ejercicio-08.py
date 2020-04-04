@@ -4,13 +4,16 @@
 
 # hola -> ho
 # verde -> ver
-import math
-
+#round no funciona
 def mitad(palabra):
-    mitad = math.ceil(len(palabra)/2)
-    mitadpalabra=""
-    for i in range(mitad):
-        mitadpalabra=mitadpalabra+palabra[i]
-    return mitadpalabra
+    lon = (len(palabra))
+    if lon % 2 == 0:
+        mitad = lon // 2
+        return palabra[:mitad]
+    mitad = lon // 2 + 1
+    return palabra[:mitad]
+
 
 print(mitad("hola"))
+print(mitad("cosas"))
+print(mitad("verde"))

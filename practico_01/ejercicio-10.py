@@ -1,4 +1,5 @@
-# Implementar las funciones superposicion_x(), que tomen dos listas y devuelva un booleano en base a
+# Implementar las funciones superposicion_x(), que tomen dos
+# listas y devuelva un booleano en base a
 # si tienen al menos 1 elemento en común.
 
 
@@ -6,24 +7,23 @@
 def superposicion_loop(lista_1, lista_2):
     for i in lista_1:
         for j in lista_2:
-            if i==j:
+            if i == j:
                 return True
     return False
 
 
 # se debe implementar utilizando conjuntos (sets).
-def superposicion_set(set_1, set_2):
+def superposicion_set(lista_1, lista_2):
+    set_1 = set(lista_1)
+    set_2 = set(lista_2)
     setinterseccion = set_1.intersection(set_2)
-    if len(setinterseccion)!=0:
-        return True
-    else:
-        return False
-    
+    return len(setinterseccion) != 0
 
-lista_1 = [1,2]
-lista_2 = [4,3]
-set_1 = {"hola","adios"}
-set_2 = {"adios", 1}
 
-print(superposicion_loop(lista_1,lista_2))
-print(superposicion_set(set_1,set_2))
+lista_1 = [1, 2]
+lista_2 = [4, 3]
+lista_3 = [5, "hola"]
+lista_4 = ["hola", 4]
+
+print(superposicion_loop(lista_1, lista_2))
+print(superposicion_set(lista_3, lista_4))

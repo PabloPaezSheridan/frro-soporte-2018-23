@@ -3,7 +3,7 @@
 
 
 def conversor(grados):
-    f = (grados*(9/5))+32
-    return f
+    return (grados * 9 / 5) + 32
 
 
+print(conversor(4))
