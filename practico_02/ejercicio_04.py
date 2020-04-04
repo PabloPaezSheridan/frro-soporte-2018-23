@@ -7,9 +7,12 @@
 # Métodos:
 # - avance(): indica que porcentaje de la carrera tiene aprobada.
 # - edad_ingreso(): indica que edad tenia al ingresar a la carrera (basándose en el año actual).
-import ejercicio_03
+#if __name__ == "__main__":
+#    pass
+
 from ejercicio_03 import Persona 
 import datetime
+
 
 class Estudiante(Persona):
 
@@ -27,6 +30,7 @@ class Estudiante(Persona):
     def edad_ingreso(self):
         now = datetime.datetime.now()
         return now.year - self.anio
+
 
 #e1 = Estudiante("John Wick",34,"M",80,1.80,"Isi",4,42,22)
 #print(e1.avance())

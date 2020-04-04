@@ -22,10 +22,7 @@ class Persona:
         self.dni = self.generar_dni()    
 
     def es_mayor_edad(self):
-        if self.edad >= 18:
-            return True
-        else:
-            return False            
+        return self.edad >= 18     
 
     # llamarlo desde __init__
     def generar_dni(self):
@@ -41,3 +38,4 @@ class Persona:
 
 #p1 = Persona("John Wick",34,"M",80,1.80)
 #p1.print_data()
+#print(p1.es_mayor_edad())

@@ -3,12 +3,18 @@
 # persona (entero).
 # Para obtener la fecha actual, usar el método de clase "now" de la clase datetime (ya importada).
 
+import datetime
 
 class Persona:
 
     # nacimiento es un objeto datetime.datetime
     def __init__(self, nacimiento):
+        self.nacimiento = nacimiento
+
+    def edad(self):     
         pass
 
-    def edad(self):
-        pass
+
+#fdn = datetime.date(1997, 5, 8)
+#p1 = Persona(fdn)
+#print(p1.edad())
