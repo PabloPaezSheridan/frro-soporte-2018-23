@@ -464,3 +464,6 @@ MigrationBackup/
 
 # Ionide (cross platform F# VS Code tools) working folder
 .ionide/
+practico_01/.vscode/settings.json
+
+.vscode/settings.json
