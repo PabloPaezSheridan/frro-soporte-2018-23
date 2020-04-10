@@ -3,12 +3,23 @@
 # Si no encuentra ningun registro, devuelve False.
 
 import datetime
+import sqlite3
 
-from practico_03.ejercicio_01 import reset_tabla
-from practico_03.ejercicio_02 import agregar_persona
+from ejercicio_01 import reset_tabla
+from ejercicio_02 import agregar_persona
 
 
 def buscar_persona(id_persona):
+    conexion = sqlite3.connect("sgdpv.db")
+    cursor = conexion.cursor()
+    values = (id_persona,)
+    sql = ("SELECT idPersona,Nombre,FechaNacimiento,DNI,Altura FROM persona WHERE IdPersona = ?;")
+    cursor.execute(sql, values)
+    persona = cursor.fetchall();
+    conexion.commit()
+    conexion.close()
+    if not persona:
+        return persona
     return False
 
 
