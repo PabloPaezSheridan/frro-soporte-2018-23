@@ -15,7 +15,8 @@ def buscar_persona(id_persona):
     values = (id_persona,)
     sql = ("SELECT idPersona,Nombre,FechaNacimiento,DNI,Altura FROM persona WHERE IdPersona = ?;")
     cursor.execute(sql, values)
-    persona = cursor.fetchall();
+    persona = cursor.fetchone();
+    persona[2] = datetime.datetime.strptime(persona[2],"%Y-%m-%d")
     conexion.commit()
     conexion.close()
     if not persona:
