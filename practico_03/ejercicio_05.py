@@ -13,18 +13,17 @@ def actualizar_persona(id_persona, nombre, nacimiento, dni, altura):
     conexion = sqlite3.connect("sgdpv.db")
     cursor = conexion.cursor()
     try:
-        sql = ("SELECT idPersona FROM persona WHERE IdPersona = ?;") 
-        if not cursor.execute(sql, (id_persona,)).fetchone() :
+        sql = ("SELECT idPersona FROM persona WHERE IdPersona = ?;")
+        if not cursor.execute(sql, (id_persona,)).fetchone():
             return False
         sql = ("UPDATE persona SET nombre = ?, FechaNacimiento = ?, dni = ?, altura = ? WHERE idPersona = ?")
-        nacimiento = datetime.strftime(nacimiento,"%Y-%m-%d")
+        nacimiento = datetime.strftime(nacimiento, "%Y-%m-%d")
         values = (nombre, nacimiento, dni, altura, id_persona)
         cursor.execute(sql, values,)
         conexion.commit()
     finally:
         conexion.close()
     return True
-    
 
 
 @reset_tabla
@@ -33,6 +32,7 @@ def pruebas():
     actualizar_persona(id_juan, 'juan carlos perez',datetime(1988, 4, 16), 32165497, 181)
     assert buscar_persona(id_juan) == (1, 'juan carlos perez', datetime(1988, 4, 16), 32165497, 181)
     assert actualizar_persona(123, 'nadie', datetime(1988, 4, 16), 12312312, 181) is False
+
 
 if __name__ == '__main__':
     pruebas()

@@ -6,18 +6,18 @@
 # Implementar la funcion borrar_tabla, que borra la tabla creada anteriormente.
 
 from ejercicio_01 import borrar_tabla, crear_tabla
+import sqlite3
 
 
 def crear_tabla_peso():
-
     conexion = sqlite3.connect("sgdpv.db")
     cursor = conexion.cursor()
     try:
         sql = ("""CREATE TABLE IF NOT EXISTS PersonaPeso (
             IdPersona INTEGER,
             Fecha TEXT,
-            PESO INTEGER
-            PRIMARY KEY(IdPersona,Fecha)
+            PESO INTEGER,
+            PRIMARY KEY(IdPersona,Fecha),
             FOREIGN KEY(IdPersona) REFERENCES persona(IdPersona)
             );""")
         cursor.execute(sql)
@@ -28,13 +28,13 @@ def crear_tabla_peso():
 
 
 def borrar_tabla_peso():
-   def borrar_tabla():
-    conexion = sqlite3.connect("sgdpv.db")
-    cursor = conexion.cursor()
-    sql = ("DROP TABLE IF EXISTS PersonaPeso")
-    cursor.execute(sql)
-    conexion.commit()
-    conexion.close()
+    def borrar_tabla():
+        conexion = sqlite3.connect("sgdpv.db")
+        cursor = conexion.cursor()
+        sql = ("DROP TABLE IF EXISTS PersonaPeso")
+        cursor.execute(sql)
+        conexion.commit()
+        conexion.close()
     pass
 
 

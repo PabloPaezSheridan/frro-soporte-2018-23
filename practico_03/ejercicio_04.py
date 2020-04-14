@@ -14,13 +14,14 @@ def buscar_persona(id_persona):
     conexion = sqlite3.connect("sgdpv.db")
     cursor = conexion.cursor()
     values = (id_persona,)
-    sql = ("SELECT idPersona,Nombre,FechaNacimiento,DNI,Altura FROM persona WHERE IdPersona = ?;") 
-    if not cursor.execute(sql, values).fetchone() :
+    sql = ("SELECT idPersona,Nombre,FechaNacimiento,DNI,Altura FROM persona WHERE IdPersona = ?;")
+    resultado = cursor.execute(sql, values).fetchone()
+    if not resultado:
         return False
-    id, nombre, fechanacimiento, dni, altura = cursor.execute(sql, values).fetchone()
-    fechanacimiento = datetime.strptime(fechanacimiento, '%Y-%m-%d') 
+    id_, nombre, fechanacimiento, dni, altura = resultado
+    fechanacimiento = datetime.strptime(fechanacimiento, '%Y-%m-%d')
     conexion.close()
-    return id, nombre, fechanacimiento, dni, altura
+    return id_, nombre, fechanacimiento, dni, altura
 
 
 @reset_tabla
@@ -28,6 +29,7 @@ def pruebas():
     juan = buscar_persona(agregar_persona('juan perez', datetime(1988, 5, 15), 32165498, 180))
     assert juan == (1, 'juan perez', datetime(1988, 5, 15), 32165498, 180)
     assert buscar_persona(12345) is False
+
 
 if __name__ == '__main__':
     pruebas()

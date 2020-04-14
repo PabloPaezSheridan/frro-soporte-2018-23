@@ -14,9 +14,9 @@ def agregar_persona(nombre, nacimiento, dni, altura):
     values = (nombre, datetime.datetime.strftime(nacimiento, "%Y-%m-%d"), dni, altura)
     cursor.execute(sql, values)
     conexion.commit()
-    id = cursor.lastrowid
+    id_ = cursor.lastrowid
     conexion.close()
-    return id
+    return id_
 
 
 @reset_tabla
