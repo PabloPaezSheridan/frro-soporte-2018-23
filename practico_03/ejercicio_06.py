@@ -13,13 +13,13 @@ def crear_tabla_peso():
     conexion = sqlite3.connect("sgdpv.db")
     cursor = conexion.cursor()
     try:
-        sql = ("""CREATE TABLE IF NOT EXISTS PersonaPeso (
+        sql = """CREATE TABLE IF NOT EXISTS PersonaPeso (
             IdPersona INTEGER,
             Fecha TEXT,
             PESO INTEGER,
             PRIMARY KEY(IdPersona,Fecha),
             FOREIGN KEY(IdPersona) REFERENCES persona(IdPersona)
-            );""")
+            );"""
         cursor.execute(sql)
         conexion.commit()
     finally:
@@ -28,14 +28,16 @@ def crear_tabla_peso():
 
 
 def borrar_tabla_peso():
-    def borrar_tabla():
-        conexion = sqlite3.connect("sgdpv.db")
-        cursor = conexion.cursor()
-        sql = ("DROP TABLE IF EXISTS PersonaPeso")
+    conexion = sqlite3.connect("sgdpv.db")
+    cursor = conexion.cursor()
+    try:
+        sql = ("DROP TABLE IF EXISTS PersonaPeso;")
         cursor.execute(sql)
         conexion.commit()
+    finally:
         conexion.close()
     pass
+
 
 
 # no modificar

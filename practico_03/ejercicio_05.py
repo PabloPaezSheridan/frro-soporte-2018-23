@@ -6,15 +6,14 @@ import sqlite3
 
 from ejercicio_01 import reset_tabla
 from ejercicio_02 import agregar_persona
-from ejercicio_04 import buscar_persona
+from ejercicio_04 import buscar_persona,existe
 
 
 def actualizar_persona(id_persona, nombre, nacimiento, dni, altura):
     conexion = sqlite3.connect("sgdpv.db")
     cursor = conexion.cursor()
     try:
-        sql = ("SELECT idPersona FROM persona WHERE IdPersona = ?;")
-        if not cursor.execute(sql, (id_persona,)).fetchone():
+        if not existe(id_persona):
             return False
         sql = ("UPDATE persona SET nombre = ?, FechaNacimiento = ?, dni = ?, altura = ? WHERE idPersona = ?")
         nacimiento = datetime.strftime(nacimiento, "%Y-%m-%d")

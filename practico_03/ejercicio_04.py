@@ -9,6 +9,15 @@ import sqlite3
 from ejercicio_01 import reset_tabla
 from ejercicio_02 import agregar_persona
 
+def existe(id_persona):
+    conexion = sqlite3.connect("sgdpv.db")
+    cursor = conexion.cursor()
+    values = (id_persona,)
+    sql = ("  SELECT EXISTS(SELECT 1 FROM persona WHERE idPersona=? ); ")
+    respuesta = cursor.execute(sql,values).fetchone()
+    return 1 in respuesta
+
+
 
 def buscar_persona(id_persona):
     conexion = sqlite3.connect("sgdpv.db")

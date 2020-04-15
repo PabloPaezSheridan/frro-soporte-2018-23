@@ -10,12 +10,12 @@
 import datetime
 import sqlite3
 from ejercicio_02 import agregar_persona
-from ejercicio_04 import buscar_persona
+from ejercicio_04 import buscar_persona,existe
 from ejercicio_06 import reset_tabla, crear_tabla_peso
 
 
 def agregar_peso(id_persona, fecha, peso):
-    if not buscar_persona(id_persona):
+    if not existe(id_persona):
         return False
     conexion = sqlite3.connect("sgdpv.db")
     cursor = conexion.cursor()
@@ -23,9 +23,11 @@ def agregar_peso(id_persona, fecha, peso):
     sql = ("SELECT Fecha FROM PersonaPeso WHERE IdPersona = ?;")
     resultado = cursor.execute(sql, values).fetchall()
     for row in resultado:
-        if datetime.datetime.strptime(row[0], "%Y-%m-%d %H:%M:%S") >= fecha:
+        fechaCortada=str(row[0])[:10]
+        if datetime.datetime.strptime(fechaCortada, "%Y-%m-%d") >= fecha:
             return False
     sql = ("INSERT INTO PersonaPeso (IdPersona,Fecha,PESO) VALUES (?, ?, ?)")
+    fecha = datetime.datetime.strftime(fecha, "%Y-%m-%d")  #sino se guarda como datetime y la hora del campo genera confilicto a la hora de comparar con un date en el 8 
     values = (id_persona, fecha, peso)
     cursor.execute(sql, values)
     conexion.commit()
