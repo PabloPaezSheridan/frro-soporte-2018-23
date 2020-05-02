@@ -23,10 +23,9 @@ def crearTreeView (main_window):
     trv.insert("", "end", text="Cordoba", values=("5000"))
     trv.insert("", "end", text="Tucuman", values=("4000"))
     
-    trv.pack()
     return trv
 
 main_window = tk.Tk()
 main_window.title("Vista de árbol en Tkinter")
-crearTreeView(main_window)
+crearTreeView(main_window).pack()
 main_window.mainloop()
