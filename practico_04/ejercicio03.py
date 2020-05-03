@@ -6,12 +6,12 @@ from tkinter import ttk
 
 
 
-def crearTreeView (main_window):
+def TreeCiudades(main_window):
     
     trv = ttk.Treeview(main_window)
 
     trv["columns"]=("one")
-    trv.column("#0", width=270, minwidth=270, stretch=tk.NO)
+    trv.column("#0", width=270, minwidth=270, stretch=tk.NO) 
     trv.column("one", width=150, minwidth=150, stretch=tk.NO)
 
     trv.heading("#0",text="Ciudades",anchor=tk.W)
@@ -27,5 +27,5 @@ def crearTreeView (main_window):
 
 main_window = tk.Tk()
 main_window.title("Vista de árbol en Tkinter")
-crearTreeView(main_window).pack()
+TreeCiudades(main_window).pack()
 main_window.mainloop()
