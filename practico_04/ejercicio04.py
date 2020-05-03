@@ -15,11 +15,19 @@ class City:
         self.citysDesktop.title("Ciudades")
 
     def citys(self):
-        btnAlta = tk.Button(citysWindow, text="Alta Ciudad", command=self.newCity)
-        btnAlta.pack()
-        self.trv = TreeCiudades(citysWindow)
-        self.trv.pack()
+        btnNewCity = tk.Button(citysWindow, text="Agregar", command=self.newCity)
+        btnNewCity.grid(row = 0)
+        btnNewCity.pack()
 
+        btnDelete = tk.Button(citysWindow, text = "Eliminar", command=self.deleteCity)
+        btnDelete.pack()
+
+        btnModificar = tk.Button(citysWindow, text = "Modificar", command=self.deleteCity)
+        btnModificar.pack()
+
+        self.trv = TreeCiudades(self.citysDesktop)
+        self.trv.pack()
+        
     def newCity(self):
         new = tk.Toplevel(citysWindow)
 
@@ -30,23 +38,30 @@ class City:
         lblCity.grid(column = 0, row = 1)
     
         self.city = tk.StringVar()
-        txtCity = ttk.Entry(frame, width = 15, textvariable = self.city)
-        txtCity.focus()
-        txtCity.grid(column = 1, row = 1)
+        self.txtCity = ttk.Entry(frame, width = 15, textvariable = self.city)
+        self.txtCity.focus()
+        self.txtCity.grid(column = 1, row = 1)
 
         lblPC = ttk.Label(frame, text = "Codigo Postal: ")
         lblPC.grid(column = 0, row = 2)
     
         self.pc= tk.StringVar()
-        txtPC = ttk.Entry(frame, width = 15, textvariable = self.pc)
-        txtPC.grid(column = 1, row = 2)
+        self.txtPC = ttk.Entry(frame, width = 15, textvariable = self.pc)
+        self.txtPC.grid(column = 1, row = 2)
 
         btnSave= ttk.Button(frame, text="Guardar Ciudad", command=self.addCity)
         btnSave.grid(column = 1, row = 3, columnspan = 2)
         
     def addCity(self):
         self.trv.insert("", "end", text=self.city.get(), values=(self.pc.get()))
+        self.txtCity.delete(0, END)
+        self.txtPC.delete(0, END)
+
+    def deleteCity(self):
+        item = self.trv.selection()
+        self.trv.delete(item)
         
+
 if __name__== '__main__':
     citysWindow = Tk()
     application = City(citysWindow)

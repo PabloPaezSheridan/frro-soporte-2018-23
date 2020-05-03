@@ -25,7 +25,7 @@ def TreeCiudades(main_window):
     
     return trv
 
-main_window = tk.Tk()
-main_window.title("Vista de árbol en Tkinter")
-TreeCiudades(main_window).pack()
-main_window.mainloop()
+#main_window = tk.Tk()
+#main_window.title("Vista de árbol en Tkinter")
+#TreeCiudades(main_window).pack()
+#main_window.mainloop()
