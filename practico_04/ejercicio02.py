@@ -32,6 +32,7 @@ def hacer_operacion():
     e_texto.delete(0, END)
     e_texto.insert(0, resultado)
     i = 0
+    
 
 # Botones
 boton1 = Button(ventana, text="1", width=5, heigh=2, command=lambda: click_button("1"))
