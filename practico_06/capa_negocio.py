@@ -1,7 +1,10 @@
 # Implementar los metodos de la capa de negocio de socios.
+import sys
+sys.path.append('c:/Users/ppaez/Documents/Repositorios/frro-soporte-2020-23/practico_05')
 
-from practico_05.ejercicio_01 import Socio
-from practico_05.ejercicio_02 import DatosSocio
+
+from ejercicio_01 import Socio
+from ejercicio_02 import DatosSocio
 
 
 class DniRepetido(Exception):
@@ -31,7 +34,7 @@ class NegocioSocio(object):
         Devuelve None si no encuentra nada.
         :rtype: Socio
         """
-        return
+        return self.datos.buscar(self, id_socio)
 
     def buscar_dni(self, dni_socio):
         """
@@ -39,14 +42,15 @@ class NegocioSocio(object):
         Devuelve None si no encuentra nada.
         :rtype: Socio
         """
-        return
+
+        return self.datos.buscar_dni(self, dni_socio)
 
     def todos(self):
         """
         Devuelve listado de todos los socios.
         :rtype: list
         """
-        return []
+        return self.datos.todos(self)
 
     def alta(self, socio):
         """
@@ -57,7 +61,9 @@ class NegocioSocio(object):
         :type socio: Socio
         :rtype: bool
         """
-        return False
+        if self.regla1(socio) and self.regla_2(socio) and self.regla_3():
+            self.datos.alta(socio)
+            return True
 
     def baja(self, id_socio):
         """
@@ -65,7 +71,7 @@ class NegocioSocio(object):
         Devuelve True si el borrado fue exitoso.
         :rtype: bool
         """
-        return False
+        return self.datos.baja(self,id_socio)
 
     def modificacion(self, socio):
         """
@@ -76,6 +82,10 @@ class NegocioSocio(object):
         :type socio: Socio
         :rtype: bool
         """
+        if self.regla_2(socio):
+            self.datos.modificacion(socio)
+            return True
+
         return False
 
     def regla_1(self, socio):
@@ -85,7 +95,11 @@ class NegocioSocio(object):
         :raise: DniRepetido
         :return: bool
         """
-        return False
+        if self.datos.buscar_dni(socio.dni) is None:
+            return True
+        else:
+            raise DniRepetido("Dni del usuario repetido")
+            return False
 
     def regla_2(self, socio):
         """
@@ -94,7 +108,11 @@ class NegocioSocio(object):
         :raise: LongitudInvalida
         :return: bool
         """
-        return False
+        if len(socio.nombre) > 3 and len(socio.nombre) > 15 and len(socio.apellido) > 3 and len(socio.apellido) > 15:
+            return True
+        else:
+            raise LongitudInvalida("Longitud de nombre y/o apellido invalidad")
+            return False
 
     def regla_3(self):
         """
@@ -102,4 +120,8 @@ class NegocioSocio(object):
         :raise: MaximoAlcanzado
         :return: bool
         """
-        return False
+        if datos.contarSocios() < 200:
+            return True
+        else:
+            raise MaximoAlcanzado("Cantidad maxima de socios excedida")
+            return False
