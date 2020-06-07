@@ -109,7 +109,16 @@ class DatosSocio(object):
         except:
             print ("No se encontro el socio: ")
         return socio
-
+    
+    def contarSocios(self):
+        """
+        Cuenta la cantidad de socios
+        que existen en la tabla
+        devuelve el numero de socios
+        """
+        rows = 0
+        rows = self.session.query(Socio).count()
+        return rows
 
 def pruebas():
     # alta
