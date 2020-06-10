@@ -10,7 +10,7 @@ class DatosSocio(object):
 
     def __init__(self):
         engine = create_engine('sqlite:///socios.db')
-        Base.metadata.drop_all(engine) #Elimina todo lo que pueda tener el motor
+        #Base.metadata.drop_all(engine) #Elimina todo lo que pueda tener el motor
         Base.metadata.bind = engine
         db_session = sessionmaker()
         db_session.bind = engine
@@ -161,5 +161,5 @@ def pruebas():
     assert len(datos.todos()) == 0
 
 
-if __name__ == '__main__':
-    pruebas()
+#if __name__ == '__main__':
+    #pruebas()
