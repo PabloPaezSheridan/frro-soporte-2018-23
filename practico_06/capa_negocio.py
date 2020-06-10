@@ -1,6 +1,6 @@
 # Implementar los metodos de la capa de negocio de socios.
 import sys
-sys.path.append('c:/Users/ppaez/Documents/Repositorios/frro-soporte-2020-23/practico_05')
+sys.path.append('c:/Users/ppaez/Documents/Repositorios/frro-soporte-2020-23 - Copy/practico_05')
 
 
 from ejercicio_01 import Socio
@@ -34,7 +34,7 @@ class NegocioSocio(object):
         Devuelve None si no encuentra nada.
         :rtype: Socio
         """
-        return self.datos.buscar(self, id_socio)
+        return self.datos.buscar(id_socio)
 
     def buscar_dni(self, dni_socio):
         """
@@ -43,14 +43,14 @@ class NegocioSocio(object):
         :rtype: Socio
         """
 
-        return self.datos.buscar_dni(self, dni_socio)
+        return self.datos.buscar_dni(dni_socio)
 
     def todos(self):
         """
         Devuelve listado de todos los socios.
         :rtype: list
         """
-        return self.datos.todos(self)
+        return self.datos.todos()
 
     def alta(self, socio):
         """
@@ -61,7 +61,7 @@ class NegocioSocio(object):
         :type socio: Socio
         :rtype: bool
         """
-        if self.regla1(socio) and self.regla_2(socio) and self.regla_3():
+        if self.regla_1(socio) and self.regla_2(socio) and self.regla_3():
             self.datos.alta(socio)
             return True
 
@@ -71,7 +71,7 @@ class NegocioSocio(object):
         Devuelve True si el borrado fue exitoso.
         :rtype: bool
         """
-        return self.datos.baja(self,id_socio)
+        return self.datos.baja(id_socio)
 
     def modificacion(self, socio):
         """
@@ -108,7 +108,7 @@ class NegocioSocio(object):
         :raise: LongitudInvalida
         :return: bool
         """
-        if len(socio.nombre) > 3 and len(socio.nombre) > 15 and len(socio.apellido) > 3 and len(socio.apellido) > 15:
+        if len(socio.nombre) > 3 and len(socio.nombre) < 15 and len(socio.apellido) > 3 and len(socio.apellido) < 15:
             return True
         else:
             raise LongitudInvalida("Longitud de nombre y/o apellido invalidad")
@@ -120,7 +120,7 @@ class NegocioSocio(object):
         :raise: MaximoAlcanzado
         :return: bool
         """
-        if datos.contarSocios() < 200:
+        if self.datos.contarSocios() < 200:
             return True
         else:
             raise MaximoAlcanzado("Cantidad maxima de socios excedida")
