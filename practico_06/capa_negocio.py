@@ -98,7 +98,7 @@ class NegocioSocio(object):
         if self.datos.buscar_dni(socio.dni) is None:
             return True
         else:
-            raise DniRepetido("Dni del usuario repetido")
+            raise DniRepetido("DNI del usuario repetido")
             return False
 
     def regla_2(self, socio):
@@ -111,7 +111,7 @@ class NegocioSocio(object):
         if len(socio.nombre) > 3 and len(socio.nombre) < 15 and len(socio.apellido) > 3 and len(socio.apellido) < 15:
             return True
         else:
-            raise LongitudInvalida("Longitud de nombre y/o apellido invalidad")
+            raise LongitudInvalida("Longitud de nombre y/o apellido invalida")
             return False
 
     def regla_3(self):
