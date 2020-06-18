@@ -24,11 +24,12 @@ class DatosSocio(object):
         :rtype: Socio
         """
         try:
-            socio = self.session.query(Socio).filter(Socio.id == id_socio).one()
+            socio = self.session.query(Socio).filter(Socio.id == id_socio).first()
+            return socio
         except:
             print ("No se encontro el socio: ")
             return None
-        return socio
+        
 
 
     def buscar_dni(self, dni_socio):
@@ -38,11 +39,12 @@ class DatosSocio(object):
         :rtype: Socio
         """
         try:
-            socio = self.session.query(Socio).filter(Socio.dni == dni_socio).one()
+            socio= self.session.query(Socio).filter_by(dni = dni_socio).first()
+            return socio
         except:
             print ("No se encontro el socio: ")
             return None
-        return socio
+        
         
 
     def todos(self):
@@ -84,7 +86,7 @@ class DatosSocio(object):
         :rtype: bool
         """
         try:
-            socioBaja = self.session.query(Socio).filter(Socio.id == id_socio).one()
+            socioBaja = self.session.query(Socio).filter(Socio.id == id_socio).first()
             self.session.delete(socioBaja)
             self.session.commit()
             return True
@@ -101,7 +103,7 @@ class DatosSocio(object):
         :rtype: Socio
         """
         try:
-            newSocio = self.session.query(Socio).filter(Socio.id == socio.id).one()
+            newSocio = self.session.query(Socio).filter(Socio.id == socio.id).first()
             newSocio.nombre = socio.nombre
             newSocio.apellido = socio.apellido
             newSocio.dni = socio.dni
@@ -121,7 +123,7 @@ class DatosSocio(object):
         return rows
 
 def pruebas():
-    # alta
+    alta
     datos = DatosSocio()
     socio = datos.alta(Socio(dni=12345678, nombre='Juan', apellido='Perez'))
     assert socio.id > 0
